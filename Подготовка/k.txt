@@ -1,0 +1,28 @@
+//картинка из трех частей
+	var img_k1 = document.createElement("img");
+	var img_k2 = document.createElement("img");
+	var img_k3 = document.createElement("img");
+	
+	img_k1.src = "img/dizayn_maket_sayta_1.png";
+	img_k1.alt = "–азработка дизайна сайта с нул€";
+	img_k2.src = "img/dizayn_maket_sayta_2.png";
+	img_k2.alt = "ѕродвинутый дизайн сайта с нул€ дешево";
+	img_k3.src = "img/dizayn_maket_sayta_3.png";
+	img_k3.alt = "—оздание и продвижение сайта дешево";
+	var img_k1_t = (t4+h4)+"px";
+	var img_k1_l = 0.35*w + "px";
+	img_k1.style.cssText = "transform-origin:left bottom; transform:rotate(45deg);   top:"+img_k1_t+"; margin-left:"+img_k1_l+";";
+	
+	var img_k2_t = 1.004*w+"px";
+	var img_k2_l = 0.2*w + "px";
+	img_k2.style.cssText = "transform-origin:left bottom; transform:rotate(45deg);   top:"+img_k2_t+"; margin-left:"+img_k2_l+";";
+	
+	var img_k3_t = 1.15*w+"px";
+	var img_k3_l = 0.05*w + "px";
+	img_k3.style.cssText = "transform-origin:left bottom; transform:rotate(45deg);   top:"+img_k3_t+"; margin-left:"+img_k3_l+";";
+	
+	telo.appendChild(img_k1);
+	telo.appendChild(img_k2);
+	telo.appendChild(img_k3);
+	
+	console.log(w);

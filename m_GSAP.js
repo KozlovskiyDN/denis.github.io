@@ -1,0 +1,212 @@
+window.addEventListener("load", function () {
+
+var w = window.outerWidth;
+/*
+var w = window.screen.width;
+var h = window.screen.height;
+
+if(window.devicePixelRatio < 1){
+  w = window.screen.width/window.devicePixelRatio;
+  h = window.screen.height/window.devicePixelRatio;
+}
+*/
+
+//настройка фона
+
+var wpx = w+"px";
+var telo = document.getElementById("telo");
+var b1 = document.getElementById("blok1");
+var b2 = document.getElementById("blok2");
+var b3 = document.getElementById("blok3");
+var b4 = document.getElementById("blok4");
+var b5 = document.getElementById("blok5");
+var b6 = document.getElementById("blok6");
+
+telo.style.width = wpx;
+var telo_h = 3*w;
+var telo_hpx = telo_h+"px";
+telo.style.height = telo_hpx;
+telo.style.overflow = "hidden";
+
+b1.style.position = "fixed";
+b1.style.width = wpx;
+b1.style.height = "20px";
+b1.style.opacity = "0.7";
+b1.style.backgroundColor = "#b0b0b0";
+
+b2.style.position = "fixed";
+b2.style.width = "80px";
+b2.style.height = "80px";
+b2.style.transform = "rotate(45deg)";
+b2.style.backgroundColor = "#fafafa";
+b2.style.top = "-40px";
+var l2 = (w/2)-40;
+var l2px = l2+"px";
+b2.style.left = l2px;
+
+b3.style.transformOrigin = "left bottom";
+var h3 = w*0.9;
+var h3px = h3+"px";
+var w3 = w*2;
+var w3px = w3+"px";
+b3.style.width = w3px;
+b3.style.height = h3px;
+b3.style.transform = "rotate(-45deg)";
+b3.style.backgroundColor = "#0d6475";
+b3.style.opacity = "0.7";
+
+
+b4.style.transformOrigin = "left bottom";
+var h4 = w*2;
+var h4px = h4+"px";
+var w4 = w*2;
+var w4px = w4+"px";
+b4.style.width = w4px;
+b4.style.height = h4px;
+b4.style.transform = "rotate(135deg)";
+b4.style.backgroundColor = "#3e2859";
+var l4 = w*0.05;
+var l4px = l4+"px";
+b4.style.left = l4px;
+var t4 = w*(0.8-2);
+var t4px = t4+"px";
+b4.style.top = t4px;
+
+b5.style.transformOrigin = "left bottom";
+b5.style.transform = "rotate(135deg)";
+b5.style.backgroundColor = "#0d6475";
+var h5 = w*2;
+var h5px = h5+"px";
+var w5 = w*2;
+var w5px = w5+"px";
+b5.style.width = w5px;
+b5.style.height = h5px;
+var l5 = w*0.9;
+var l5px = l5+"px";
+b5.style.left = l5px;
+var t5 = w*(1.45-2);
+var t5px = t5+"px";
+b5.style.top = t5px;
+
+b6.style.transformOrigin = "left bottom";
+b6.style.transform = "rotate(135deg)";
+b6.style.backgroundColor = "#d9dad5";
+var h6 = w*2;
+var h6px = h6+"px";
+var w6 = w*2;
+var w6px = w6+"px";
+b6.style.width = w6px;
+b6.style.height = h6px;
+var l6 = w*0.05;
+var l6px = l6+"px";
+b6.style.left = l6px;
+var t6 = w*(2.2-2);
+var t6px = t6+"px";
+b6.style.top = t6px;
+
+//карусель
+var topK = 0.4*w+"px";
+var leftK = -0.2*w+"px";
+document.getElementById("karusel").style.top = topK;
+document.getElementById("karusel").style.left = leftK;
+var kar = document.getElementById("karusel").children;
+var rad = 0.3*w;//радиус
+var top=[];
+var left=[];
+//1 координаты картинок
+top[0] = "0px";
+left[0] = rad + "px";
+//2 координаты картинок
+top[1] = 0.3*rad+"px";
+left[1] = 1.7*rad + "px";
+//3 координаты картинок
+top[2] = rad+"px";
+left[2] = 2*rad + "px";
+//4 координаты картинок
+top[3] = 1.7*rad+"px";
+left[3] = 1.7*rad + "px";
+//5 координаты картинок
+top[4] = 2*rad+"px";
+left[4] = rad + "px";
+//6 координаты картинок
+top[5] = 1.7*rad+"px";
+left[5] = 0.3*rad + "px";
+//7 координаты картинок
+top[6] = rad+"px";
+left[6] = "0px";
+//8 координаты картинок
+top[7] = 0.3*rad+"px";
+left[7] = 0.3*rad + "px";
+//стартовые данные
+//размер блоков
+var hirina = 0.15*w + "px";
+var vusota = 0.15*w + "px";
+var radius = 0.01*w + "px";
+var url_img;
+for (var i=0; i<8; i++) {
+	kar[i].style.width = hirina;
+	kar[i].style.height = vusota;
+	kar[i].style.borderRadius = radius;
+	kar[i].style.top = top[i];
+	kar[i].style.left = left[i];
+	kar[i].style.backgroundSize = "contain";
+	url_img = "url(img/t_"+i+".jpg)";
+	kar[i].style.backgroundImage = url_img;
+	kar[i].style.boxShadow="0 0 10px rgba(0,0,0,0.5)";
+}
+
+//вращение
+var timerId = setInterval(function() {
+	for (var i=0; i<7; i++) {
+	TweenLite.to(kar[i], 4, {css:{left:left[i+1], top:top[i+1] }});
+	}
+	TweenLite.to(kar[7], 4, {css:{left:left[0], top:top[0] }});
+	kar[0].parentNode.insertBefore(kar[7],kar[0]);
+}, 2200);
+	
+//показ по клику
+kar[0].parentNode.addEventListener("click", initClick, false);	
+var im = document.getElementById("zoom");
+	
+	function initClick(e) {
+	var img_activ = e.target;
+	var s = img_activ.style.backgroundImage;
+	var i = s.match(/\d/)[0];
+	var src_i= "img/"+i+".jpg";	
+	var w_i = 0.6*w+"px";
+	var left_i = 0.2*w+"px";	
+		im.src=src_i;
+		im.style.marginTop= topK;
+		im.style.marginLeft= left_i;
+		//im.style.width=  w_i;
+		TweenLite.to(im, 1, {css:{width:w_i }});
+		
+		im.style.boxShadow="0 0 10px rgba(0,0,0,0.5)";
+		
+	}
+//закрытие по клику
+im.addEventListener("click", closeClick, false);	
+	
+	function closeClick(e) {
+	var img_activ = e.target;
+		TweenLite.to(im, 0.3, {css:{width:"0px" },
+		onComplete: function() {
+					im.src="";
+					}
+		
+		
+		});
+		
+	}
+//изменение курсора	мышки
+	kar[0].parentNode.addEventListener("mouseover", overClick, false);
+	kar[0].parentNode.addEventListener("mouseout", outClick, false);		
+	function overClick(e) {
+		document.body.style.cursor = 'pointer';
+	}
+	function outClick(e) {
+		document.body.style.cursor = 'default';
+	}
+	
+
+}, false);
