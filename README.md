@@ -1,2 +1,2 @@
-# denis.github.io
+# kozlovskiy.github.io
 # domen - kozlovskiy.ml
